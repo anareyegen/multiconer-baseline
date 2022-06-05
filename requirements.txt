@@ -16,7 +16,7 @@ catalogue==1.0.0
 certifi==2021.5.30
 charset-normalizer==2.0.3
 click==8.0.1
-clyent==1.2.2
+clyent==1.2.1
 coloredlogs==15.0.1
 contextlib2==0.6.0.post1
 contextvars==2.4
@@ -24,7 +24,7 @@ cycler==0.10.0
 cymem==2.0.5
 cytoolz==0.11.0
 databricks-cli==0.14.3
-dataclasses==0.8
+dataclasses
 dill==0.3.4
 docker==5.0.0
 environment-kernels==1.1.1
@@ -67,7 +67,7 @@ Mako==1.1.4
 Markdown==3.3.4
 MarkupSafe==2.0.1
 mccabe==0.6.1
-mkl-fft==1.0.14
+mkl-fft==1.2.0
 mkl-random==1.2.2
 mkl-service==2.4.0
 mlflow==1.19.0
@@ -136,7 +136,7 @@ Send2Trash==1.5.0
 sentencepiece==0.1.96
 shap==0.39.0
 simplegeneric==0.8.1
-sip==4.19.25
+sip==4.19.8
 six==1.16.0
 sklearn==0.0
 sklearn-crfsuite==0.3.6
@@ -154,7 +154,7 @@ spyder==3.3.6
 spyder-kernels==0.5.2
 srsly==1.0.5
 tabulate==0.8.9
-TBB==0.1
+TBB==2021.6.0
 tenacity==8.0.0
 tensorboard==2.4.1
 tensorboard-plugin-wit==1.8.0
@@ -163,7 +163,7 @@ termcolor==1.1.0
 thinc==7.4.5
 tifffile==2020.10.1
 tokenizers==0.10.3
-torch==1.7.1
+torch==1.4.0
 torchmetrics==0.4.1
 torchvision==0.5.0
 tqdm==4.61.2
