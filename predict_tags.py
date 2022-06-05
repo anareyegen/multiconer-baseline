@@ -11,7 +11,10 @@ if __name__ == '__main__':
 
     # load the dataset first
     test_data = get_reader(file_path=sg.test, target_vocab=get_tagset(sg.iob_tagging), max_instances=sg.max_instances, max_length=sg.max_length)
-
+    f = open(sg.test)
+    # tokens = []
+    # for i in f:
+    #   tokens.append(i)
     model, model_file = load_model(sg.model, tag_to_id=get_tagset(sg.iob_tagging))
     model = model.to(sg.cuda)
     # use pytorch lightnings saver here.
@@ -22,9 +25,12 @@ if __name__ == '__main__':
     index = 0
     for batch in tqdm(test_dataloaders, total=len(test_dataloaders)):
         pred_tags = model.predict_tags(batch, device=sg.cuda)
-
-        for pred_tag_inst in pred_tags:
-            out_str += '\n'.join(pred_tag_inst)
+        
+        for pred_tag_inst, token in zip(pred_tags,f):
+            # print('TAGS: ', pred_tag_inst)
+            snt = token+'\t'+'\n'.join(pred_tag_inst)
+            out_str += snt
             out_str += '\n\n\n'
+            print(out_str)
         index += 1
     open(eval_file, 'wt').write(out_str)

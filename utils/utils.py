@@ -50,16 +50,16 @@ def parse_args():
 def get_tagset(tagging_scheme):
     if 'conll' in tagging_scheme:
         return conll_iob
-    elif 'wnut' in tagging_scheme:
-        return  wnut_iob
-    elif 'resume' in tagging_scheme:
-        return resume_iob
-    elif 'ontonotes' in tagging_scheme:
-        return ontonotes_iob
-    elif 'msra' in tagging_scheme:
-        return msra_iob
-    elif 'weibo' in tagging_scheme:
-        return weibo_iob
+    # elif 'wnut' in tagging_scheme:
+    #     return  wnut_iob
+    # elif 'resume' in tagging_scheme:
+    #     return resume_iob
+    # elif 'ontonotes' in tagging_scheme:
+    #     return ontonotes_iob
+    # elif 'msra' in tagging_scheme:
+    #     return msra_iob
+    # elif 'weibo' in tagging_scheme:
+    #     return weibo_iob
 
 
 def get_out_filename(out_dir, model, prefix):
