@@ -12,12 +12,13 @@ from log import logger
 from model.ner_model import NERBaseAnnotator
 from utils.reader import CoNLLReader
 
-conll_iob = {'B-ORG': 0, 'I-ORG': 1, 'B-MISC': 2, 'I-MISC': 3, 'B-LOC': 4, 'I-LOC': 5, 'B-PER': 6, 'I-PER': 7, 'O': 8}
-wnut_iob = {'B-CORP': 0, 'I-CORP': 1, 'B-CW': 2, 'I-CW': 3, 'B-GRP': 4, 'I-GRP': 5, 'B-LOC': 6, 'I-LOC': 7, 'B-PER': 8, 'I-PER': 9, 'B-PROD': 10, 'I-PROD': 11, 'O': 12}
-resume_iob = {'M-RACE': 0,  'B-PRO': 1,  'S-ORG': 2,  'B-LOC': 3,  'B-CONT': 4,  'M-CONT': 5,  'E-LOC': 6,  'M-PRO': 7,  'M-LOC': 8,  'M-TITLE': 9,  'B-ORG': 10,  'M-ORG': 11,  'E-ORG': 12,  'E-RACE': 13,  'B-EDU': 14,  'S-NAME': 15,  'B-TITLE': 16,  'S-RACE': 17,  'B-NAME': 18,  'B-RACE': 19,  'E-NAME': 20,  'O': 21,  'E-CONT': 22,  'M-EDU': 23,  'E-TITLE': 24,  'E-EDU': 25,  'M-NAME': 26,  'E-PRO': 27}
-weibo_iob = {'O': 0,  'B-PER.NOM': 1,  'E-PER.NOM': 2,  'B-LOC.NAM': 3,  'E-LOC.NAM': 4,  'B-PER.NAM': 5,  'M-PER.NAM': 6,  'E-PER.NAM': 7,  'S-PER.NOM': 8,  'B-GPE.NAM': 9,  'E-GPE.NAM': 10,  'B-ORG.NAM': 11,  'M-ORG.NAM': 12,  'E-ORG.NAM': 13,  'M-PER.NOM': 14,  'S-GPE.NAM': 15,  'B-ORG.NOM': 16,  'E-ORG.NOM': 17,  'M-LOC.NAM': 18,  'M-ORG.NOM': 19,  'B-LOC.NOM': 20,  'M-LOC.NOM': 21,  'E-LOC.NOM': 22,  'B-GPE.NOM': 23,  'E-GPE.NOM': 24,  'M-GPE.NAM': 25,  'S-PER.NAM': 26,  'S-LOC.NOM': 27}
-msra_iob = {'O': 0,  'S-NS': 1,  'B-NS': 2,  'E-NS': 3,  'B-NT': 4,  'M-NT': 5,  'E-NT': 6,  'M-NS': 7,  'B-NR': 8,  'M-NR': 9,  'E-NR': 10,  'S-NR': 11,  'S-NT': 12}
-ontonotes_iob = {'E-PER': 0,  'E-GPE': 1,  'E-LOC': 2,  'M-ORG': 3,  'E-ORG': 4,  'S-ORG': 5,  'B-GPE': 6,  'O': 7,  'M-PER': 8,  'M-LOC': 9,  'B-PER': 10,  'M-GPE': 11,  'S-LOC': 12,  'B-ORG': 13,  'S-PER': 14,  'B-LOC': 15,  'S-GPE': 16}
+conll_iob = {'B-Claim': 0, 'I-Claim': 1, 'B-Premise': 2, 'I-Premise': 3, 'O': 4}
+# conll_iob = {'B-ORG': 0, 'I-ORG': 1, 'B-MISC': 2, 'I-MISC': 3, 'B-LOC': 4, 'I-LOC': 5, 'B-PER': 6, 'I-PER': 7, 'O': 8}
+# wnut_iob = {'B-CORP': 0, 'I-CORP': 1, 'B-CW': 2, 'I-CW': 3, 'B-GRP': 4, 'I-GRP': 5, 'B-LOC': 6, 'I-LOC': 7, 'B-PER': 8, 'I-PER': 9, 'B-PROD': 10, 'I-PROD': 11, 'O': 12}
+# resume_iob = {'M-RACE': 0,  'B-PRO': 1,  'S-ORG': 2,  'B-LOC': 3,  'B-CONT': 4,  'M-CONT': 5,  'E-LOC': 6,  'M-PRO': 7,  'M-LOC': 8,  'M-TITLE': 9,  'B-ORG': 10,  'M-ORG': 11,  'E-ORG': 12,  'E-RACE': 13,  'B-EDU': 14,  'S-NAME': 15,  'B-TITLE': 16,  'S-RACE': 17,  'B-NAME': 18,  'B-RACE': 19,  'E-NAME': 20,  'O': 21,  'E-CONT': 22,  'M-EDU': 23,  'E-TITLE': 24,  'E-EDU': 25,  'M-NAME': 26,  'E-PRO': 27}
+# weibo_iob = {'O': 0,  'B-PER.NOM': 1,  'E-PER.NOM': 2,  'B-LOC.NAM': 3,  'E-LOC.NAM': 4,  'B-PER.NAM': 5,  'M-PER.NAM': 6,  'E-PER.NAM': 7,  'S-PER.NOM': 8,  'B-GPE.NAM': 9,  'E-GPE.NAM': 10,  'B-ORG.NAM': 11,  'M-ORG.NAM': 12,  'E-ORG.NAM': 13,  'M-PER.NOM': 14,  'S-GPE.NAM': 15,  'B-ORG.NOM': 16,  'E-ORG.NOM': 17,  'M-LOC.NAM': 18,  'M-ORG.NOM': 19,  'B-LOC.NOM': 20,  'M-LOC.NOM': 21,  'E-LOC.NOM': 22,  'B-GPE.NOM': 23,  'E-GPE.NOM': 24,  'M-GPE.NAM': 25,  'S-PER.NAM': 26,  'S-LOC.NOM': 27}
+# msra_iob = {'O': 0,  'S-NS': 1,  'B-NS': 2,  'E-NS': 3,  'B-NT': 4,  'M-NT': 5,  'E-NT': 6,  'M-NS': 7,  'B-NR': 8,  'M-NR': 9,  'E-NR': 10,  'S-NR': 11,  'S-NT': 12}
+# ontonotes_iob = {'E-PER': 0,  'E-GPE': 1,  'E-LOC': 2,  'M-ORG': 3,  'E-ORG': 4,  'S-ORG': 5,  'B-GPE': 6,  'O': 7,  'M-PER': 8,  'M-LOC': 9,  'B-PER': 10,  'M-GPE': 11,  'S-LOC': 12,  'B-ORG': 13,  'S-PER': 14,  'B-LOC': 15,  'S-GPE': 16}
 
 def parse_args():
     p = argparse.ArgumentParser(description='Model configuration.', add_help=False)
@@ -37,7 +38,7 @@ def parse_args():
     p.add_argument('--stage', type=str, help='Training stage', default='fit')
     p.add_argument('--prefix', type=str, help='Prefix for storing evaluation files.', default='test')
 
-    p.add_argument('--batch_size', type=int, help='Batch size.', default=128)
+    p.add_argument('--batch_size', type=int, help='Batch size.', default=32)
     p.add_argument('--gpus', type=int, help='Number of GPUs.', default=1)
     p.add_argument('--cuda', type=str, help='Cuda Device', default='cuda:0')
     p.add_argument('--epochs', type=int, help='Number of epochs for training.', default=5)
@@ -48,8 +49,8 @@ def parse_args():
 
 
 def get_tagset(tagging_scheme):
-    if 'conll' in tagging_scheme:
-        return conll_iob
+    # if 'conll' in tagging_scheme:
+    return conll_iob
     # elif 'wnut' in tagging_scheme:
     #     return  wnut_iob
     # elif 'resume' in tagging_scheme:
@@ -131,8 +132,8 @@ def get_trainer(gpus=4, is_test=False, out_dir=None, epochs=10):
         return pl.Trainer(gpus=1) if torch.cuda.is_available() else pl.Trainer(val_check_interval=100)
 
     if torch.cuda.is_available():
-        trainer = pl.Trainer(gpus=gpus, deterministic=True, max_epochs=epochs, callbacks=[get_model_earlystopping_callback()],
-                             default_root_dir=out_dir, distributed_backend='ddp', checkpoint_callback=False)
+        trainer = pl.Trainer(gpus=gpus, deterministic=False, max_epochs=epochs, callbacks=[get_model_earlystopping_callback()],
+                             default_root_dir=out_dir, strategy='dp', checkpoint_callback=False)
         trainer.callbacks.append(get_lr_logger())
     else:
         trainer = pl.Trainer(max_epochs=epochs, default_root_dir=out_dir)

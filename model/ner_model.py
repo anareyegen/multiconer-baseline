@@ -50,7 +50,7 @@ class NERBaseAnnotator(pl.LightningModule):
         self.encoder = AutoModel.from_pretrained(encoder_model, return_dict=True)
 
         self.feedforward = nn.Linear(in_features=self.encoder.config.hidden_size, out_features=self.target_size)
-
+        self.rnn = nn.GRU(self.encoder.config.hidden_size, self.encoder.config.hidden_size, batch_first=True, bidirectional=True)
         self.crf_layer = ConditionalRandomField(num_tags=self.target_size, constraints=allowed_transitions(constraint_type="BIO", labels=self.id_to_tag))
 
         self.lr = lr
